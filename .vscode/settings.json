@@ -8,7 +8,7 @@
   "terminal.integrated.fontSize": 12,
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.fontWeight": "normal",
-  "terminal.integrated.fontFamily": "Courier New",
+  "terminal.integrated.fontFamily": "나눔고딕코딩,d2coding",
   "window.zoomLevel": 2,
   "workbench.colorTheme": "Default Dark+"
   "workbench.startupEditor": "none",

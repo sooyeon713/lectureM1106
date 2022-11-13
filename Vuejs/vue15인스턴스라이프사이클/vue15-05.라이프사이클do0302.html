@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
     <title>Vue Instance Lifecycle</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet"
+      href="../css/reset.css">
 
-</head>
+  </head>
 
-<body>
+  <body>
     <xmp>
 
         Vue 라이프 사이클 단계 속성과 목적을 이해한다
@@ -34,10 +37,50 @@
     <hr />
 
     <div id="app">
-        {{ message }}
-        <!-- 버튼 기능 추가-->
-
+      {{ message }}
+      <!-- 버튼 기능 추가-->
+      <button v-on:click="btnClick">Vue 버튼</button>
     </div>
 
-</body>
+  </body>
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.5.4/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
+      message: 'Hello Vue.js!',
+    },
+    //template: ` 프로퍼티 넣기(태그 넣기 필수) `,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      btnClick(e) {
+        console.log(e.target);  // <button>Vue 버튼</button>
+        this.$data.message = 'abc';
+        console.log(this.$data.message);
+        this.$data.message = new Date();
+        console.log(this.$data.message);
+      }
+    },
+    created() {
+      console.log("created");
+    },
+    mounted() {
+      console.log("mounted");
+    },
+    updated() {
+      console.log("updated");
+    },
+  });
+
+</script>

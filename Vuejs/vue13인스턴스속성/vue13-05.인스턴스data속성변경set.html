@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+      content="ie=edge">
     <title>Document</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet"
+      href="../css/reset.css">
 
     <style>
-        span {
-            font-size: 3em;
-        }
+      span {
+        font-size: 3em;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <xmp>
 
         data 프로퍼티의 값을 변경하려면 복제 후 재할당으로 처리해야 한다.
@@ -84,7 +88,7 @@
                 Vue.set() 은 Vue prototype 의 static 메서드
                 Vue.set(this.$data.msg4, 0, 100); // this.$data.msg4 === [100,2,3]
 
-            3. splice()함수를 사용하여 변경한다. slice()  또는 splice()
+            3. splice()함수를 사용하여 변경한다. slice()  또는 splice() //복제후 재할당기능이들어있음
                 this.$data.msg4.splice(0,2,500); // this.$data.msg4 === [500,3]
 
             4. spread 연산자 방식 ==> 배열을 새로 만든 뒤 할당. ES6 에서만 가능.
@@ -100,13 +104,66 @@
     </xmp>
     <hr>
     <div id="app">
-        <span v-for="(val, i) in arr" v-bind:key="i"> {{val}} </span>
-        <br>
-        <button v-on:click="change1">방법1로 변경</button>
-        <button v-on:click="change2">방법2로 변경</button>
-        <button v-on:click="change3">방법3로 변경</button>
-        <button v-on:click="change4">방법4로 변경</button>
+      <span v-for="(val, i) in arr"
+        v-bind:key="i"> {{val}} </span>
+      <br>
+      <button v-on:click="change2">방법2로 변경</button>
+      <button v-on:click="change3">방법3로 변경</button>
+      <button v-on:click="change4">방법4로 변경</button>
+      <button v-on:click="change1">방법1로 변경</button>
     </div>
-</body>
+  </body>
 
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+  // v-for 는 in 다음에  오는 애만  변수
+  /*
+  for (const {val, i} in object) {
+    if (Object.hasOwnProperty.call(object, key)) {
+      const element = object[key];
+
+    }
+  }*/
+  new Vue({
+    /* edtmc^2w */
+    el: '#app', // 만든 인스턴스를 화면과 연결한다
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
+      arr: [1, 2, 3, 4, 5]
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      change1(e) {
+        console.log(e.target);
+        //debugger;
+        //        this.$data.arr[0] = 100;  // [100, 2, 3, 4, 5]
+        this.$set(this.$data.arr, 0, 100);  // [1, 2, 3, 4, 5] 그대로 있다가 잠시 뒤 변경되어있음. 시간이 좀 걸림. 화면에서도 바뀜. 비동기처리
+        console.log(this.$data.arr);
+      },
+      change2(e) {
+        console.log(e.target);
+        //debugger;
+        //        this.$data.arr[1] = 300;  // [100, 300, 3, 4, 5]
+        //this.$set => Vue.set
+        Vue.set(this.$data.arr, 1, 300);
+        console.log(this.$data.arr); // [100, 300, 3, 4, 5]
+      },
+      change3(e) {
+        console.log(e.target);
+        this.$data.arr.splice(0, 2);
+        console.log(this.$data.arr); // [3, 4, 5]
+      },
+      change4(e) {
+        console.log(e.target);
+        this.$data.arr = [500, ...this.$data.arr, 70];
+      },
+    },
+  });
+
+</script>

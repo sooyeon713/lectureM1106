@@ -61,7 +61,11 @@
     methods: {
       /* 이벤트 핸들러 등록 + 일반 함수 */
       clickBtn() {
-        alert('hi');
+        //alert('hi');
+        
+        //data라는 걸 명시하기 위해서 $ 표시 붙임
+        //this의 의미는 new Vue
+        this.$data.message = 'hi, sooyeon~~~';
       }
     },
     components: {
