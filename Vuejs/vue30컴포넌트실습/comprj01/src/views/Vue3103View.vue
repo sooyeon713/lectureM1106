@@ -1,26 +1,29 @@
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-</style>
+<style scoped></style>
 
 <template>
   <div id="app">
-    <h2>{{ msg }}</h2>
-    <child1 />
-    <child2 />
+    <h2>컴포넌트 등록</h2>
+    <Vue3103Comp v-bind:localmsg="localmsg1"></Vue3103Comp>
+    <Vue3103Comp v-bind:localmsg="localmsg2"></Vue3103Comp>
   </div>
+
+  <!--
+    변수
+      localmsg1
+      localmsg2
+
+    함수
+
+    컴포넌트
+      Vue3103Comp
+   -->
 </template>
 
 <script>
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
 // import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
-import CompChild1 from '../components/vue3701/CompChild1.vue';
-import CompChild2 from '../components/vue3701/CompChild2.vue';
+import Vue3103Comp from '../components/vue3103/Vue3103Comp.vue'; //파일(Vue3103Comp.vue)에 있는 내용을 변수(Vue3103Comp)에 넣는다.
+
 export default {
   /* pdtmc^2w */
   props: [],
@@ -28,7 +31,8 @@ export default {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
     return {
-      msg: 'Welcome to Your Vue.js App',
+      localmsg1: '부모 컴포넌트에서 자식 컴포넌트로 넘겨진 메시지1',
+      localmsg2: '부모 컴포넌트에서 자식 컴포넌트로 넘겨진 메시지2',
     };
   },
   //template: ``,
@@ -47,8 +51,7 @@ export default {
   components: {
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
-    child1: CompChild1,
-    child2: CompChild2,
+    Vue3103Comp: Vue3103Comp,
   },
   computed: {
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */

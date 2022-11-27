@@ -1,34 +1,97 @@
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style scoped>
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+  margin-top: 0;
+  text-align: left;
+}
+li {
+  display: flex;
+  min-height: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0.5rem 0;
+  padding: 0 0.9rem;
+  background: white;
+  border-radius: 5px;
+}
+li.checked {
+  background: #bbb;
+  color: #fff;
+  text-decoration: line-through;
+}
+.checkBtn {
+  line-height: 45px;
+  color: #62acde;
+  margin-right: 5px;
+}
+.removeBtn {
+  margin-left: auto;
+  color: #de4343;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
 
 <template>
-  <div id="app">
-    <h2>{{ msg }}</h2>
-    <child1 />
-    <child2 />
-  </div>
+  <section>
+    <transition-group name="list" tag="ul">
+      <li
+        v-for="todoItem in todoItems"
+        v-bind:key="todoItem.id"
+        v-bind:class="checked(todoItem.done)"
+        v-on:click="doneToggle(todoItem.id)"
+      >
+        <i class="checkBtn fas fa-check" aria-hidden="true"></i>
+        {{ todoItem.todo }}
+        <span
+          class="removeBtn"
+          type="button"
+          v-on:click.stop="removeTodo(todoItem.id)"
+        >
+          <i class="far fa-trash-alt" aria-hidden="true"></i>
+        </span>
+      </li>
+    </transition-group>
+  </section>
+  <!--
+    변수
+      todoItems: [
+        {id, done, todo}
+      ]
+
+    함수
+      checked(done)
+      doneToggle(id)
+      removeTodo(id)
+   -->
 </template>
 
 <script>
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
 // import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
-import CompChild1 from '../components/vue3701/CompChild1.vue';
-import CompChild2 from '../components/vue3701/CompChild2.vue';
+
 export default {
   /* pdtmc^2w */
-  props: [],
+  props: ['todoItems'],
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
     return {
-      msg: 'Welcome to Your Vue.js App',
+      // todoItems: [
+      //   { id: 1, todo: '영화보기', done: false },
+      //   { id: 2, todo: '주말 산책', done: true },
+      //   { id: 3, todo: 'ES6 학습', done: false },
+      //   { id: 4, todo: '잠실 야구장', done: false },
+      // ], 부모로 넘김
     };
   },
   //template: ``,
@@ -43,12 +106,31 @@ export default {
       2) store.모듈명.actions 이름 그대로 사용하기
          ...mapActions('모듈명', ['액션명1', '액션명2']),
       */
+    checked(done) {
+      console.log(done);
+
+      if (done === true) return 'checked';
+      else return null;
+    },
+    doneToggle(id) {
+      console.log(id);
+      this.$emit('doneToggle', id);
+    },
+    removeTodo(id) {
+      console.log(id);
+      this.$emit('removeTodo', id);
+
+      //이벤트 버블링 막기 : 이벤트 취소
+      // vue에서는 .stop 을 사용
+      /*
+      window.event.stopPropagation();
+      window.event.preventDefault();
+      */
+    },
   },
   components: {
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
-    child1: CompChild1,
-    child2: CompChild2,
   },
   computed: {
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */

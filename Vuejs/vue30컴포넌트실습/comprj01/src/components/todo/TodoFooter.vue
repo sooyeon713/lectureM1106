@@ -1,35 +1,35 @@
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style scoped>
+.clearAllContainer {
+  width: 8.5rem;
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+.clearAllBtn {
+  color: #e20303;
+  display: block;
 }
 </style>
 
 <template>
-  <div id="app">
-    <h2>{{ msg }}</h2>
-    <child1 />
-    <child2 />
+  <div class="clearAllContainer">
+    <span class="clearAllBtn" v-on:click="clearAll">Clear All</span>
   </div>
 </template>
 
 <script>
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
 // import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
-import CompChild1 from '../components/vue3701/CompChild1.vue';
-import CompChild2 from '../components/vue3701/CompChild2.vue';
+
 export default {
   /* pdtmc^2w */
   props: [],
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
-    return {
-      msg: 'Welcome to Your Vue.js App',
-    };
+    return {};
   },
   //template: ``,
   methods: {
@@ -43,12 +43,15 @@ export default {
       2) store.모듈명.actions 이름 그대로 사용하기
          ...mapActions('모듈명', ['액션명1', '액션명2']),
       */
+    clearAll(e) {
+      console.log(e.target);
+      // 이벤트 발생. this.$emit('이벤트명', 인자);
+      this.$emit('clearAll', e);
+    },
   },
   components: {
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
-    child1: CompChild1,
-    child2: CompChild2,
   },
   computed: {
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */

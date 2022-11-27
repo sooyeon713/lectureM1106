@@ -1,26 +1,34 @@
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-</style>
+<style scoped></style>
 
 <template>
   <div id="app">
-    <h2>{{ msg }}</h2>
-    <child1 />
-    <child2 />
+    <p>
+      <button v-on:click="clickAddBox">박스 추가</button>
+    </p>
+    <p>
+      <b v-for="(val, i) in arr" v-bind:key="i">
+        {{ val }}
+        <component-box v-bind:num="val"></component-box>
+      </b>
+    </p>
   </div>
+  <!--
+    변수
+      arr:[],
+
+    함수
+      clickAddBox()
+
+    컴포넌트
+    component-box
+
+  -->
 </template>
 
 <script>
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
 // import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
-import CompChild1 from '../components/vue3701/CompChild1.vue';
-import CompChild2 from '../components/vue3701/CompChild2.vue';
+import Vue3104Counter from '../components/vue3104/Vue3104Counter.vue';
 export default {
   /* pdtmc^2w */
   props: [],
@@ -28,7 +36,7 @@ export default {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     /* data 프로퍼티 값 변경시 this.set(object, key, value) 을 사용 */
     return {
-      msg: 'Welcome to Your Vue.js App',
+      arr: [0, 1, 2, 3, 4, 5],
     };
   },
   //template: ``,
@@ -43,12 +51,17 @@ export default {
       2) store.모듈명.actions 이름 그대로 사용하기
          ...mapActions('모듈명', ['액션명1', '액션명2']),
       */
+    clickAddBox(e) {
+      console.log(e.target);
+      //this.$data.arr[this.$data.arr.length] = this.$data.arr.length;
+      this.$data.arr = [...this.$data.arr, this.$data.arr.length];
+      //컴포넌트에서는 $set을 쓸 수 없다. 인스턴스에서만 가능.
+    },
   },
   components: {
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
-    child1: CompChild1,
-    child2: CompChild2,
+    'component-box': Vue3104Counter,
   },
   computed: {
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */

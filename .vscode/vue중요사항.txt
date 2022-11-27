@@ -13,7 +13,7 @@ https://www.npmjs.com/
   vueplugin : .html 파일에서 사용.
   vuei      : .html 파일에서 사용.
   vuefc     : .vue 파일에서 사용.
-
+  vuex      : vuex 코드 생성
 
 실행중인 서버 중지 : ctrl + c
 
