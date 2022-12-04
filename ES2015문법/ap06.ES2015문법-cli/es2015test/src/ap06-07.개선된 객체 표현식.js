@@ -6,34 +6,32 @@
 */
 // es2015
 const name = '홍길동';
-const age =  20;
-let p2 ={
+const age = 20;
+let p2 = {
   name,
   age,
   powderYell() {
     let yell = this.name.toUpperCase();
     console.log(`${yell} ${yell}!!!`);
-
   },
   setAge(mph) {
     this.age = mph;
-    console.log("나이:", mph);
+    console.log('나이:', mph);
   },
 };
 
-var p1{
-  "name": name,
-  "age": age,
-  "powerYell": function(){
+var p1 = {
+  name: name,
+  age: age,
+  powerYell: function () {
     var yell = this.name.toUpperCase;
-    console.log(yell + yell + "!!!");
+    console.log(yell + yell + '!!!');
   },
-  "setAge":function(mph){
+  setAge: function (mph) {
     this.age = mph;
-    console.log("나이:",mph);
+    console.log('나이:', mph);
   },
 };
-
 
 p2.powderYell();
 p2.setAge(30);

@@ -111,7 +111,7 @@
     "description": "React Class Component"
   },
   "React Functional Component At plugin": {
-    "prefix": "rfchtml",
+    "prefix": "rfc",
     "body": [
       "function ${1:${TM_FILENAME_BASE}}({",
       "  ...props",
@@ -143,7 +143,7 @@
       "  // callback 메서드 작성. callback 메서드는 부모의 공유 상태값을 변경하기 위해서 사용된다.",
       "  const callback = useCallback( (param)=>{",
       "    // state 변경",
-      "  }, [/* 연관배열: 메서드와 연관되는 상태(변수)명들을 기술 */]);",
+      "  }, [/* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */]);",
       "  ",
       "  // 이벤트 핸들러 작성.",
       "  const handler = (e)=>{",
@@ -163,7 +163,7 @@
     "description": "React Functional Component At plugin"
   },
   "React Functional Component": {
-    "prefix": "rfc",
+    "prefix": "rfc2",
     "body": [
       "import React, { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment, forwardRef, useImperativeHandle } from 'react';",
       "import PropTypes from 'prop-types';",
@@ -208,7 +208,7 @@
       "  // callback 메서드 작성. callback 메서드는 부모의 공유 상태값을 변경하기 위해서 사용된다.",
       "  const callback = useCallback( (param)=>{",
       "    // state 변경",
-      "  }, [/* 연관배열: 메서드와 연관되는 상태(변수)명들을 기술 */]);",
+      "  }, [/* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */]);",
       "  ",
       "  // 이벤트 핸들러 작성.",
       "  const handler = (e)=>{",

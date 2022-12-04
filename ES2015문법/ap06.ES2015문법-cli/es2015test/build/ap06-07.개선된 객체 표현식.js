@@ -14,13 +14,24 @@ var p2 = {
   age: age,
   powderYell: function powderYell() {
     var yell = this.name.toUpperCase();
-    console.log('${yell} ${yell}!!!');
+    console.log("".concat(yell, " ").concat(yell, "!!!"));
   },
   setAge: function setAge(mph) {
     this.age = mph;
-    console.log("나이:", mph);
+    console.log('나이:', mph);
+  }
+};
+var p1 = {
+  name: name,
+  age: age,
+  powerYell: function powerYell() {
+    var yell = this.name.toUpperCase;
+    console.log(yell + yell + '!!!');
+  },
+  setAge: function setAge(mph) {
+    this.age = mph;
+    console.log('나이:', mph);
   }
 };
 p2.powderYell();
 p2.setAge(30);
-var p1;
