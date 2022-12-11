@@ -41,3 +41,51 @@
 </html>
 
 
+<script src="https://unpkg.com/@babel/standalone/babel.js"
+  crossorigin="anonymous">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-- > ES5 * /
+  </script>
+<script src="http://unpkg.com/react@17/umd/react.development.js"
+  crossorigin="anonymous">
+    /* import React, { Component, PureComponent } from 'react' */
+  </script>
+<script src="http://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  crossorigin="anonymous">
+    /* import ReactDOM from 'react-dom' */
+  </script>
+<script type="text/babel">
+
+  const { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment } = React;
+
+  ReactDOM.render(<Loop3 />, document.getElementById('wrap3'));
+
+  // 단축키 rfc
+
+  function Loop3({ ...props }) {
+    // useState 를 사용한 컴포넌트의 상태값 설정
+    const [elements, setElements] = useState(['one', 'two', 'three']); // 상태값이 기본타입인 경우
+
+    // lis = <li>one</li> <li>two</li> <li>three</li>
+    const lis = elements && elements.length > 0 && elements.map((value) => (<li>{value}</li>));
+
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
+    return (
+      <div>
+        {lis}
+      </div>
+    )
+  }
+
+  ReactDOM.render(<Loop4 />, document.getElementById('wrap4'));
+  function Loop4({ ...props }) {
+    // useState 를 사용한 컴포넌트의 상태값 설정
+    const [elements, setElements] = useState(['one', 'two', 'three']);
+
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
+    return (
+      <div>
+        {elements && elements.length > 0 && elements.map((value) => (<li>{value}</li>))}
+      </div>
+    )
+  }
+</script>
