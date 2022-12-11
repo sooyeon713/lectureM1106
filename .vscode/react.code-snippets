@@ -167,6 +167,7 @@
     "body": [
       "import React, { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment, forwardRef, useImperativeHandle } from 'react';",
       "import PropTypes from 'prop-types';",
+      "import { BrowserRouter, Routes, Route, NavLink, useParams, useLocation, useHistory, useNavigate } from 'react-router-dom';",
       "import styled, { css } from 'styled-components';",
       "",
       "const Styled${1:${TM_FILENAME_BASE}} = styled.div`",

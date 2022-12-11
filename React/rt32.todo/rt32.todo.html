@@ -51,7 +51,8 @@
     4. 앱 요구사항
     ##################################
 
-        0. 퍼블리싱될 화면 만들기.
+        0. 퍼블리싱된 화면 만들기.
+           "1차/todo.html" 파일 참조
 
         1. 컴포넌트 트리 만들기
             1-1. TodoContainer 컴포넌트
@@ -129,16 +130,22 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
 
-    11-3. fontawesome 폰트 설정
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" />
 
-    11-4. ubuntu 폰트 설정
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" />
+    11-3. 1차 폴더의 reset.css 파일을 public 폴더로 복사
 
-    11-5. index.html 에 css 파일 설정
+    11-4. index.html 에 css 파일 설정
     <link rel="stylesheet" href="%PUBLIC_URL%/reset.css" />
 
-    11-6. 1차 폴더의 reset.css 파일을 public 폴더로 복사
+    11-5. fontawesome 폰트 설정
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" />
+
+
+    11-6. ubuntu 폰트 설정
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" />
+
+
+
+
 
 
 
@@ -394,7 +401,7 @@
 
 
     ##################################
-    step 24. TodoFooter 컴포넌트 만들고 컴포넌트 등록하고 태그 작성한다.
+    step 24. TodoFooter 컴포넌트 만들고 TodoContainer 에 만든 컴포넌트를 등록하고 태그 작성한다.
         소요시간: 10분
     ##################################
     step 24-01. TodoFooter 컴포넌트 만든다.
@@ -919,7 +926,7 @@
             setTodoItems( [...todoItems, newTodo] ); // todoItems = [...todoItems, newTodo];
           },
           [todoItems]
-        };
+        );
 
 
 
